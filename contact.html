@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - HarvestHub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS if needed -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        nav.hidden {
+            transform: translateY(-100%);
+        }
+        nav .logo {
+            font-size: 1.5rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        nav .language-select,
+        nav .login-button {
+            margin: 0 10px;
+        }
+        nav .language-select select,
+        nav .login-button a {
+            background-color: white;
+            color: #28a745;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #28a745;
+        }
+        .container p,
+        .container ul {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+        .container ul {
+            list-style: none;
+            padding: 0;
+        }
+        .container ul li {
+            margin: 10px 0;
+        }
+        .container ul li strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        // JavaScript function to toggle language between English and Telugu
+        function changeLanguage(lang) {
+            localStorage.setItem('language', lang);
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(el => {
+                el.textContent = el.getAttribute(`data-lang-${lang}`);
+            });
+        }
+        function loadLanguage() {
+            const lang = localStorage.getItem('language') || 'en';
+            changeLanguage(lang);
+            document.getElementById('language').value = lang;
+        }
+        window.onload = loadLanguage;
+
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                // Scroll Down
+                navbar.classList.add('hidden');
+            } else {
+                // Scroll Up
+                navbar.classList.remove('hidden');
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">HarvestHub</div>
+        <ul>
+            <li><a href="HarvestHub.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+        <div class="language-select">
+            <label for="language">Choose Language: </label>
+            <select id="language" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="te">Telugu</option>
+            </select>
+        </div>
+        <div class="login-button">
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+    
+    <!-- Contact Us Content -->
+    <div class="container">
+        <h2 data-lang data-lang-en="Contact Us - HarvestHub" data-lang-te="కాంటాక్ట్స్ - హార్వెస్ట్ హబ్">Contact Us - HarvestHub</h2>
+        <p data-lang data-lang-en="We're here to help! Whether you have questions, feedback, or need assistance, feel free to reach out to us through any of the following methods:" data-lang-te="మేము మీకు సహాయం చేయడానికి ఇక్కడ ఉన్నాము! మీకు ప్రశ్నలు, ఫీడ్‌బ్యాక్ లేదా సహాయం అవసరమైతే, దిగువ పేర్కొన్న పద్ధతుల ద్వారా మాకు చేరడానికి సంకోచించకండి:">We're here to help! Whether you have questions, feedback, or need assistance, feel free to reach out to us through any of the following methods:</p>
+        <ul>
+            <li>
+                <strong data-lang data-lang-en="Phone Support:" data-lang-te="ఫోన మద్దతు:">Phone Support:</strong>
+                <p data-lang data-lang-en="Call us at +91-XXXXXXXXXX Monday to Friday: 9 AM - 6 PM" data-lang-te="మాకు కాల్ చేయండి +91-XXXXXXXXXX సోమవారం నుండి శుక్రవారం: ఉదయం 9 AM - 6 PM">Call us at +91-XXXXXXXXXX Monday to Friday: 9 AM - 6 PM</p>
+            </li>
+            <li>
+                <strong data-lang data-lang-en="Email Support:" data-lang-te="ఇమెయిల్ మద్దతు:">Email Support:</strong>
+                <p data-lang data-lang-en="Send your queries to support@harvesthub.com We’ll get back to you within 24 hours." data-lang-te="మీ ప్రశ్నలను support@harvesthub.com కు పంపండి. మేము 24 గంటలలో మీకు తిరిగి ఫిర్యాదు చేస్తాము.">Send your queries to support@harvesthub.com We’ll get back to you within 24 hours.</p>
+            </li>
+            <li>
+                <strong data-lang data-lang-en="Office Address:" data-lang-te="కార్యాలయ చిరునామా:">Office Address:</strong>
+                <p data-lang data-lang-en="HarvestHub HQ, 1234 Agriculture Lane, Hyderabad, Telangana, 500001" data-lang-te="హార్వెస్ట్హబ్ హెచ్‌క్యూ, 1234 ఆగ్రికల్చర్ లేన్, హైదరాబాద్, తెలంగాణ, 500001">HarvestHub HQ, 1234 Agriculture Lane, Hyderabad, Telangana, 500001</p>
+            </li>
+            <li>
+                <strong data-lang data-lang-en="Social Media:" data-lang-te="సోషియల్ మీడియా:">Social Media:</strong>
+                <p data-lang data-lang-en="Follow us and message us on: Facebook | Twitter | Instagram" data-lang-te="మమ్మల్ని అనుసరించండి మరియు సందేశం పంపండి: Facebook | Twitter | Instagram">Follow us and message us on: Facebook | Twitter | Instagram</p>
+            </li>
+        </ul>
+        <p data-lang data-lang-en="We look forward to hearing from you!" data-lang-te="మీ నుండి వినడానికి ఎదురు చూస్తున్నాము!">We look forward to hearing from you!</p>
+    </div>
+</body>
+</html>

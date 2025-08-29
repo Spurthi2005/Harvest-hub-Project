@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Buyer Dashboard - HarvestHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        /* Navigation bar */
+        nav {
+            background-color: #28a745;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        nav ul li {
+            display: inline;
+            padding: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        /* Language switcher */
+        .language-switcher {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+        .language-switcher a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .language-switcher a:hover {
+            text-decoration: underline;
+        }
+        /* Dashboard container */
+        .dashboard-container {
+            display: flex;
+            padding: 20px;
+        }
+        .dashboard-sidebar {
+            background-color: #28a745;
+            width: 220px;
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: calc(100vh - 40px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard-sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 0;
+            transition: background 0.3s;
+        }
+        .dashboard-sidebar a:hover {
+            background-color: #218838;
+            padding-left: 5px;
+        }
+        /* Dashboard Content */
+        .dashboard-content {
+            flex-grow: 1;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-left: 20px;
+        }
+        h1 {
+            color: #28a745;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #28a745;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        /* Product list */
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .product-item:hover {
+            transform: scale(1.05);
+        }
+        .product-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-item h3 {
+            margin: 10px 0;
+            color: #28a745;
+            font-size: 18px;
+        }
+        .product-item p {
+            margin: 10px 0;
+        }
+        .product-item button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .product-item button:hover {
+            background-color: #218838;
+        }
+        /* Cart */
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cart-table th, .cart-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-table th {
+            background-color: #28a745;
+            color: white;
+        }
+        .cart-table tr:hover {
+            background-color: #f2f2f2;
+        }
+        .cart-total {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .checkout-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .checkout-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="language-switcher">
+            <a href="#" onclick="changeLanguage('en')">English</a>
+            <a href="#" onclick="changeLanguage('te')">తెలుగు</a>
+        </div>
+        <ul>
+            <li><a href="#" id="home-link">Home</a></li>
+            <li><a href="buyer-profile.html" id="profile-link">Profile</a></li>
+            <li><a href="#" id="settings-link">Settings</a></li>
+            <li><a href="login.html" id="logout-link">Logout</a></li>
+        </ul>
+    </nav>
+    <!-- Main Dashboard Layout -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="dashboard-sidebar">
+            <a href="#product-list-section" id="product-list-link">Browse Products</a>
+            <a href="#cart-section" id="cart-link">View Cart</a>
+        </div>
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <h1 id="welcome-message">Welcome to the Buyer Dashboard</h1>
+            <!-- Product List Section -->
+            <div class="section" id="product-list-section">
+                <h2 id="product-list-title">Browse Products</h2>
+                <div class="product-list">
+                    <!-- Example Product Items -->
+                    <div class="product-item">
+                        <img src="product1.jpg" alt="Product 1">
+                        <h3>Paddy</h3>
+                        <p>Each Bag Contains 50kgs.</p>
+                        <p>Price: ₹1000 per bag</p>
+                        <button>Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="product2.jpg" alt="Product 2">
+                        <h3>Red Chilli</h3>
+                        <p>Each Bag Contains 25kgs.</p>
+                        <p>Price: ₹1200 per bag</p>
+                        <button>Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="product3.jpg" alt="Product 3">
+                        <h3>Peanuts</h3>
+                        <p>Each Bag Contains 25kgs.</p>
+                        <p>Price: ₹1500 per bag</p>
+                        <button>Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="product4.jpg" alt="Product 4">
+                        <h3>Maize</h3>
+                        <p>Each Bag Contains 40kgs.</p>
+                        <p>Price: ₹900 per bag</p>
+                        <button>Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="product5.jpg" alt="Product 5">
+                        <h3>Wheat</h3>
+                        <p>Each Bag Contains 60kgs.</p>
+                        <p>Price: ₹1100 per bag</p>
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Cart Section -->
+            <div class="section" id="cart-section">
+                <h2 id="cart-title">View Cart</h2>
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th id="cart-product-name-header">Product Name</th>
+                            <th id="cart-quantity-header">Quantity</th>
+                            <th id="cart-price-header">Price</th>
+                            <th id="cart-total-header">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example Cart Items -->
+                        <tr>
+                            <td>Paddy</td>
+                            <td>2</td>
+                            <td>₹1000</td>
+                            <td>₹2000</td>
+                        </tr>
+                        <tr>
+                            <td>Red Chilli</td>
+                            <td>1</td>
+                            <td>₹1200</td>
+                            <td>₹1200</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+                <div class="cart-total">
+                    <p>Total Amount: ₹3200</p>
+                    <button class="checkout-button">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const translations = {
+            en: {
+                'page-title': 'Buyer Dashboard - HarvestHub',
+                'home-link': 'Home',
+                'profile-link': 'Profile',
+                'settings-link': 'Settings',
+                'logout-link': 'Logout',
+                'product-list-link': 'Browse Products',
+                'cart-link': 'View Cart',
+                'welcome-message': 'Welcome to the Buyer Dashboard',
+                'product-list-title': 'Browse Products',
+                'cart-title': 'View Cart',
+                'cart-product-name-header': 'Product Name',
+                'cart-quantity-header': 'Quantity',
+                'cart-price-header': 'Price',
+                'cart-total-header': 'Total'
+            },
+            te: {
+                'page-title': 'కొనుగోలుదారుని డాష్‌బోర్ - హార్వెస్టహబ్',
+                'home-link': 'హోం',
+                'profile-link': 'ప్రొఫైల్',
+                'settings-link': 'సెట్టింగులు',
+                'logout-link': 'లాగ్ అవుట్',
+                'product-list-link': 'ఉత్పత్తులను చూడండి',
+                'cart-link': 'గరిహతను చూడండి',
+                'welcome-message': 'కొనుగోలుదారుని డాష్‌బోర్డ్‌కు స్వాగతం',
+                'product-list-title': 'ఉత్పత్తులను చూడండి',
+                'cart-title': 'గరిహతను చూడండి',
+                'cart-product-name-header': 'ఉత్పత్తి పేరు',
+                'cart-quantity-header': 'మోతాదు',
+                'cart-price-header': 'ధర',
+                'cart-total-header': 'మొత్తం'
+            }
+        };
+        function changeLanguage(lang) {
+            document.getElementById('page-title').innerText = translations[lang]['page-title'];
+            document.getElementById('home-link').innerText = translations[lang]['home-link'];
+            document.getElementById('profile-link').innerText = translations[lang]['profile-link'];
+            document.getElementById('settings-link').innerText = translations[lang]['settings-link'];
+            document.getElementById('logout-link').innerText = translations[lang]['logout-link'];
+            document.getElementById('product-list-link').innerText = translations[lang]['product-list-link'];
+            document.getElementById('cart-link').innerText = translations[lang]['cart-link'];
+            document.getElementById('welcome-message').innerText = translations[lang]['welcome-message'];
+            document.getElementById('product-list-title').innerText = translations[lang]['product-list-title'];
+            document.getElementById('cart-title').innerText = translations[lang]['cart-title'];
+            document.getElementById('cart-product-name-header').innerText = translations[lang]['cart-product-name-header'];
+            document.getElementById('cart-quantity-header').innerText = translations[lang]['cart-quantity-header'];
+            document.getElementById('cart-price-header').innerText = translations[lang]['cart-price-header'];
+            document.getElementById('cart-total-header').innerText = translations[lang]['cart-total-header'];
+        }
+    </script>
+</body>
+</html>

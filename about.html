@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HarvestHub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS if needed -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        nav.hidden {
+            transform: translateY(-100%);
+        }
+        nav .logo {
+            font-size: 1.5rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        nav .language-select, nav .login-button {
+            margin: 0 10px;
+        }
+        nav .language-select select, nav .login-button a {
+            background-color: white;
+            color: #28a745;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        nav .language-select select {
+            font-size: 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #28a745;
+        }
+        .container p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    </style>
+    <script>
+        // JavaScript function to toggle language between English and Telugu
+        function changeLanguage(lang) {
+            localStorage.setItem('language', lang);
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(el => {
+                el.textContent = el.getAttribute(`data-lang-${lang}`);
+            });
+        }
+        function loadLanguage() {
+            const lang = localStorage.getItem('language') || 'en';
+            changeLanguage(lang);
+            document.getElementById('language').value = lang;
+        }
+        window.onload = loadLanguage;
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                // Scroll Down
+                navbar.classList.add('hidden');
+            } else {
+                // Scroll Up
+                navbar.classList.remove('hidden');
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">HarvestHub</div>
+        <ul>
+            <li><a href="HarvestHub.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+        <div class="language-select">
+            <label for="language">Choose Language: </label>
+            <select id="language" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="te">Telugu</option>
+            </select>
+        </div>
+        <div class="login-button">
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+    <!-- About Us Content -->
+    <div class="container">
+        <h2 data-lang data-lang-en="About HarvestHub" data-lang-te="హార్వెస్ట్హబ గురించి">About HarvestHub</h2>
+        <p data-lang data-lang-en="Welcome to HarvestHub, a platform dedicated to simplifying the way farmers sell their crops and connect with buyers. In traditional markets, farmers often have to transport their produce to distant markets and wait for dealers to make a purchase. This process can be time-consuming, labor-intensive, and often expensive.
+        HarvestHub revolutionizes this by providing a direct online marketplace where farmers can list their products straight from their fields or homes. By uploading videos and providing accurate weight details of their crops, farmers can showcase their produce to a wide range of buyers across different regions, without ever leaving their village. 
+        Our goal is to make the selling process easier and more efficient for farmers, while offering buyers a transparent and reliable way to purchase fresh produce directly from the source. With flexible payment options like online payments and Cash on Delivery (COD), along with doorstep delivery services, HarvestHub brings convenience to both farmers and buyers.
+        At HarvestHub, we are committed to empowering farmers by offering a platform that not only reduces their dependence on traditional markets but also ensures they receive a fair price for their hard work. Join us in transforming the future of agriculture!" data-lang-te="హార్వెస్ట్హబ్‌కు స్వాగతం, రైతులు తమ రంట్లను అమ్మడం మరియు కొనుగోలుదారులతో అనుసంధానం చేయడాన్ని సులభతరం చేసే ప్లాట్‌ఫార్మ్. సంప్రదాయ మార్కెట్లలో, రైతులు తరచుగా తమ ఉత్పత్తులను దూరపు మార్కెట్లకు తరలించాలి మరియు డీలర్లకు కొనుగోలు చేయాలని ఎదురు చూడాలి. ఈ ప్రక్రియ సమయం తీసుకునే, శ్రామికంతో కూడినది మరియు తరచుగా ఖరీదైనది కావచ్చు. 
+        హార్వెస్ట్హబ్ ఇది క్షణం క్షణం విప్లవం చేస్తుంది. రైతులు తమ ఉత్పత్తులను తమ పొలాల లేదా ఇళ్ల నుండి నేరుగా జాబితా చేయగల ప్రత్యేక ఆన్లైన్ మార్కెట్‌ను అందించడంలో. వీడియోలను అప్‌లోడ్ చేయడం మరియు తమ రంట్ల ఖచ్చితమైన బరువు వివరాలను అందించడం ద్వారా, రైతులు తమ ఉత్పత్తులను విభిన్న ప్రాంతాల్లో విస్తృతమైన కొనుగోలుదారులకు చూపించగలరు, తమ గ్రామాన్ని విడిచిపెట్టకుండా. 
+        మా లక్ష్యం రైతులకు అమ్మకపు ప్రక్రియను సులభంగా మరియు సమర్ధంగా చేయడం, మరియు కొనుగోలుదారులకు మూలం నుండి తాజా ఉత్పత్తులను కొనుగోలు చేయడానికి పారదర్శక మరియు నమ్మదగిన మార్గాన్ని అందించడం. ఆన్‌లైన్ చెల్లింపులు మరియు కాష్ ఆన్ డెలివరీ (COD) వంటి సౌకర్యవంతమైన చెల్లింపు ఎంపికలు, ఇంటి దారికి డెలివరీ సేవలతో, హార్వెస్ట్హబ్ రైతులు మరియు కొనుగోలుదారుల ఇద్దరి కోసం సౌలభ్యాన్ని అందిస్తుంది. 
+        హార్వెస్ట్హబ్‌లో, సంప్రదాయ మార్కెట్లపై రైతుల ఆధారితాన్ని తగ్గించడం మాత్రమే కాకుండా, వారి కష్టానికి సమయముతో న్యాయమైన ధరను పొందడానికి మద్దతు ఇవ్వడం ద్వారా రైతులను శక్తివంతం చేసే వేదికను అందించడానికి మేము బృహత్ప్రయత్నం చేస్తున్నాము. వ్యవసాయ భవిష్యత్తును మార్చడంలో మాతో చేరండి!">Welcome to HarvestHub, a platform dedicated to simplifying the way farmers sell their crops and connect with buyers. In traditional markets, farmers often have to transport their produce to distant markets and wait for dealers to make a purchase. This process can be time-consuming, labor-intensive, and often expensive.
+        HarvestHub revolutionizes this by providing a direct online marketplace where farmers can list their products straight from their fields or homes. By uploading videos and providing accurate weight details of their crops, farmers can showcase their produce to a wide range of buyers across different regions, without ever leaving their village. 
+        Our goal is to make the selling process easier and more efficient for farmers, while offering buyers a transparent and reliable way to purchase fresh produce directly from the source. With flexible payment options like online payments and Cash on Delivery (COD), along with doorstep delivery services, HarvestHub brings convenience to both farmers and buyers.
+        At HarvestHub, we are committed to empowering farmers by offering a platform that not only reduces their dependence on traditional markets but also ensures they receive a fair price for their hard work. Join us in transforming the future of agriculture!
+        </p>
+    </div>
+</body>
+</html>

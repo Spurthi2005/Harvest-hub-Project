@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Farmer Dashboard - HarvestHub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    /* Navigation bar */
+    nav {
+      background-color: #28a745;
+      padding: 10px;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    nav ul li {
+      display: inline;
+      padding: 0 15px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    /* Language switcher */
+    .language-switcher {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+    .language-switcher a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    .language-switcher a:hover {
+      text-decoration: underline;
+    }
+    /* Dashboard container */
+    .dashboard-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .dashboard-sidebar {
+      background-color: #28a745;
+      width: 200px;
+      padding: 20px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      height: 100vh;
+    }
+    .dashboard-sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 10px 0;
+    }
+    .dashboard-sidebar a:hover {
+      background-color: #218838;
+      padding-left: 5px;
+    }
+    .dashboard-content {
+      width: 100%;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-left: 20px;
+    }
+    h1 {
+      color: #28a745;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      color: #28a745;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    /* Product upload form */
+    .upload-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .upload-form input,
+    .upload-form textarea {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+    }
+    .upload-form button {
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .upload-form button:hover {
+      background-color: #218838;
+    }
+    .orders-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .orders-table th,
+    .orders-table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .orders-table th {
+      background-color: #28a745;
+      color: white;
+    }
+    .orders-table tr:hover {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="language-switcher">
+      <a href="#" onclick="changeLanguage('en')">English</a>
+      <a href="#" onclick="changeLanguage('te')">తెలుగు</a>
+    </div>
+    <ul>
+      <li><a href="#" id="home-link">Home</a></li>
+      <li><a href="farmer-profile.html" id="profile-link">Profile</a></li>
+      <li><a href="farmer-settings.html" id="settings-link">Settings</a></li>
+      <li><a href="login.html" id="logout-link">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Dashboard Layout -->
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="dashboard-sidebar">
+      <a href="#upload-section" id="upload-link">Upload Products</a>
+      <a href="#manage-listings-section" id="manage-listings-link">Manage Listings</a>
+      <a href="#orders-section" id="orders-link">View Orders</a>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+      <h1 id="welcome-message">Welcome to the Farmer Dashboard</h1>
+
+      <!-- Upload Products Section -->
+      <div class="section" id="upload-section">
+        <h2 id="upload-section-title">Upload Products</h2>
+        <form class="upload-form" action="upload-product.php" method="POST" enctype="multipart/form-data">
+          <label for="product-name" id="product-name-label">Product Name</label>
+          <input type="text" id="product-name" name="product-name" placeholder="Enter product name" required>
+
+          <label for="product-description" id="product-description-label">Product Description</label>
+          <textarea id="product-description" name="product-description" rows="4" placeholder="Describe your product" required></textarea>
+
+          <label for="product-weight" id="product-weight-label">Product Weight (in bags)</label>
+          <input type="number" id="product-weight" name="product-weight" placeholder="Enter weight in bags" required>
+
+          <label for="product-price" id="product-price-label">Product Price (per bag)</label>
+          <input type="number" id="product-price" name="product-price" placeholder="Enter price per bag" required>
+
+          <label for="product-image" id="product-image-label">Upload Image</label>
+          <input type="file" id="product-image" name="product-image" accept="image/*" required>
+
+          <button type="submit" id="upload-button">Upload Product</button>
+        </form>
+      </div>
+
+      <!-- Manage Listings Section -->
+      <div class="section" id="manage-listings-section">
+        <h2 id="manage-listings-title">Manage Listings</h2>
+        <p id="manage-listings-text">You currently have no products listed. Once you upload products, they will appear here for you to manage or delete.</p>
+      </div>
+
+      <!-- View Orders Section -->
+      <div class="section" id="orders-section">
+        <h2 id="orders-title">View Orders</h2>
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th id="order-id-header">Order ID</th>
+              <th id="product-name-header">Product Name</th>
+              <th id="quantity-header">Quantity</th>
+              <th id="price-header">Price</th>
+              <th id="status-header">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12345</td>
+              <td>Paddy Seeds</td>
+              <td>10 bags</td>
+              <td>₹5000</td>
+              <td>Delivered</td>
+            </tr>
+            <tr>
+              <td>67890</td>
+              <td>Peanuts</td>
+              <td>15 bags</td>
+              <td>₹7500</td>
+              <td>Processing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        'page-title': 'Farmer Dashboard - HarvestHub',
+        'home-link': 'Home',
+        'profile-link': 'Profile',
+        'settings-link': 'Settings',
+        'logout-link': 'Logout',
+        'upload-link': 'Upload Products',
+        'manage-listings-link': 'Manage Listings',
+        'orders-link': 'View Orders',
+        'welcome-message': 'Welcome to the Farmer Dashboard',
+        'upload-section-title': 'Upload Products',
+        'product-name-label': 'Product Name',
+        'product-description-label': 'Product Description',
+        'product-weight-label': 'Product Weight (in bags)',
+        'product-price-label': 'Product Price (per bag)',
+        'product-image-label': 'Upload Image',
+        'upload-button': 'Upload Product',
+        'manage-listings-title': 'Manage Listings',
+        'manage-listings-text': 'You currently have no products listed. Once you upload products, they will appear here for you to manage or delete.',
+        'orders-title': 'View Orders',
+        'order-id-header': 'Order ID',
+        'product-name-header': 'Product Name',
+        'quantity-header': 'Quantity',
+        'price-header': 'Price',
+        'status-header': 'Status'
+      },
+      te: {
+        'page-title': 'వ్యాపారి డాష్‌బోర్డ్ - హార్వెస్ట్‌హబ్',
+        'home-link': 'ఇంటిపేజీ',
+        'profile-link': 'ప్రొఫైల్',
+        'settings-link': 'సెట్టింగులు',
+        'logout-link': 'లాగ్‌అవుట్',
+        'upload-link': 'ఉత్పత్తులు అప్లోడ్ చేయండి',
+        'manage-listings-link': 'లిస్టింగ్‌లను నిర్వహించండి',
+        'orders-link': 'ఆర్డర్లు చూడండి',
+        'welcome-message': 'వ్యాపారి డాష్‌బోర్డ్‌కు స్వాగతం',
+        'upload-section-title': 'ఉత్పత్తులు అప్లోడ్ చేయండి',
+        'product-name-label': 'ఉత్పత్తి పేరు',
+        'product-description-label': 'ఉత్పత్తి వివరణ',
+        'product-weight-label': 'ఉత్పత్తి బరువు (పెట్టెలలో)',
+        'product-price-label': 'ఉత్పత్తి ధర (పెట్టెలకు)',
+        'product-image-label': 'చిత్రం అప్లోడ్ చేయండి',
+        'upload-button': 'ఉత్పత్తి అప్లోడ్ చేయండి',
+        'manage-listings-title': 'లిస్టింగ్‌లను నిర్వహించండి',
+        'manage-listings-text': 'మీ వద్ద ప్రస్తుతం ఎలాంటి ఉత్పత్తులు లేవు. మీరు ఉత్పత్తులను అప్లోడ్ చేసిన తర్వాత, అవి ఇక్కడ మీను నిర్వహించడానికి లేదా తొలగించడానికి ప్రదర్శించబడతాయి.',
+        'orders-title': 'ఆర్డర్లు చూడండి',
+        'order-id-header': 'ఆర్డర్ ID',
+        'product-name-header': 'ఉత్పత్తి పేరు',
+        'quantity-header': 'పరిమాణం',
+        'price-header': 'ధర',
+        'status-header': 'స్థితి'
+      }
+    };
+
+    function changeLanguage(lang) {
+      const translation = translations[lang];
+      for (const key in translation) {
+        document.getElementById(key).innerText = translation[key];
+      }
+      document.title = translation['page-title'];
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HarvestHub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS if needed -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        nav.hidden {
+            transform: translateY(-100%);
+        }
+        nav .logo {
+            font-size: 1.5rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        nav .language-select, nav .login-button {
+            margin: 0 10px;
+        }
+        nav .language-select select, nav .login-button a {
+            background-color: white;
+            color: #28a745;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        nav .language-select select {
+            font-size: 1rem;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #28a745;
+        }
+        .container .btn {
+            display: block;
+            margin: 10px auto;
+            padding: 15px 25px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            width: 50%;
+        }
+        .container .btn:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        // JavaScript function to toggle language between English and Telugu
+        function changeLanguage(lang) {
+            localStorage.setItem('language', lang);
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(el => {
+                el.textContent = el.getAttribute(`data-lang-${lang}`);
+            });
+        }
+        function loadLanguage() {
+            const lang = localStorage.getItem('language') || 'en';
+            changeLanguage(lang);
+            document.getElementById('language').value = lang;
+        }
+        window.onload = loadLanguage;
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                // Scroll Down
+                navbar.classList.add('hidden');
+            } else {
+                // Scroll Up
+                navbar.classList.remove('hidden');
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">HarvestHub</div>
+        <ul>
+            <li><a href="HarvestHub.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+        <div class="language-select">
+            <label for="language">Choose Language: </label>
+            <select id="language" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="te">Telugu</option>
+            </select>
+        </div>
+        <div class="login-button">
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+    <!-- Login Page Content -->
+    <div class="container">
+        <h2 data-lang data-lang-en="Login to HarvestHub" data-lang-te="హార్వెస్ట్హబ లో లాగిన అవెండి">Login to HarvestHub</h2>
+        <a href="farmer-login.html" class="btn" data-lang data-lang-en="If you are a farmer, log in here" data-lang-te="మీరు రైతు అయితే, ఇక్కడ లాగిన్ అవ్వండి">If you are a farmer, log in here</a>
+        <a href="buyer-login.html" class="btn" data-lang data-lang-en="If you are a buyer, log in here" data-lang-te="మీరు కొనుగోలుదారు అయితే, ఇక్కడ లాగిన్ అవ్వండి">If you are a buyer, log in here</a>
+    </div>
+</body>
+</html>

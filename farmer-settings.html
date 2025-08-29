@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #4CAF50;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover, 
+.navbar a.active {
+    background-color: #45a049;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Card Style */
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #4CAF50;
+}
+
+/* Delete Card Styling */
+.delete-card {
+    border: 2px solid #ff4c4c;
+}
+
+.delete-card h3 {
+    color: #ff4c4c;
+}
+
+/* Button Styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.delete-btn {
+    background-color: #ff4c4c;
+}
+
+.delete-btn:hover {
+    background-color: #e04343;
+}
+
+/* Theme Options Styling */
+.theme-options label {
+    display: inline-block;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+/* Input Styling */
+input[type="checkbox"], input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+select {
+    padding: 10px;
+    width: 80%;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="farmer-dashboard.html">Home</a>
+        <a href="farmer-profile.html">Profile</a>
+        <a href="farmer-settings.html" class="active">Settings</a>
+        <a href="login.html">Logout</a>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Settings & Preferences</h1>
+
+        <!-- Grid Layout -->
+        <div class="grid-container">
+            <!-- Account Info -->
+            <div class="card">
+                <h3>Account Information</h3>
+                <p><strong>Name:</strong> Farmer Name</p>
+                <p><strong>Email:</strong> farmer@example.com</p>
+                <button class="edit-btn">Edit Details</button>
+            </div>
+
+            <!-- Privacy Settings -->
+            <div class="card">
+                <h3>Privacy Settings</h3>
+                <p>Manage how your data is shared and used.</p>
+                <label><input type="checkbox" checked> Allow Data Sharing</label><br>
+                <label><input type="checkbox"> Hide Profile from Public</label>
+                <button class="edit-btn">Update Preferences</button>
+            </div>
+
+            <!-- Theme Selection -->
+            <div class="card">
+                <h3>Theme Preferences</h3>
+                <p>Choose a theme for your dashboard:</p>
+                <div class="theme-options">
+                    <label>
+                        <input type="radio" name="theme" value="light" checked> Light
+                    </label>
+                    <label>
+                        <input type="radio" name="theme" value="dark"> Dark
+                    </label>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="card">
+                <h3>Notification Preferences</h3>
+                <p>Stay informed with alerts and updates.</p>
+                <label><input type="checkbox" checked> Email Notifications</label><br>
+                <label><input type="checkbox" checked> SMS Alerts</label><br>
+                <label><input type="checkbox"> Push Notifications</label>
+            </div>
+
+            <!-- Password Management -->
+            <div class="card">
+                <h3>Security & Password</h3>
+                <p>Ensure your account is secure with a strong password.</p>
+                <button class="edit-btn">Change Password</button>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="card">
+                <h3>Manage Payment Methods</h3>
+                <p>Update or add your payment details for easier transactions.</p>
+                <button class="edit-btn">Add Payment Method</button>
+            </div>
+
+            <!-- Language Settings -->
+            <div class="card">
+                <h3>Language Preferences</h3>
+                <p>Select your preferred language:</p>
+                <select>
+                    <option value="en">English</option>
+                    <option value="te">Telugu</option>
+                </select>
+            </div>
+
+            <!-- Delete Account -->
+            <div class="card delete-card">
+                <h3>Delete Account</h3>
+                <p>Warning: Deleting your account will erase all your data.</p>
+                <button class="delete-btn">Delete Account</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

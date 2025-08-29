@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HarvestHub connects farmers directly to markets, making it easy to sell and buy fresh produce online.">
+  <title>HarvestHub - Connecting Farmers to Markets</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Navigation Styles */
+    nav {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    nav.hidden {
+      transform: translateY(-100%);
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    nav .language-select, nav .login-button {
+      margin: 0 10px;
+    }
+
+    nav .language-select select, nav .login-button a {
+      background-color: white;
+      color: #28a745;
+      border: none;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Header Section */
+    header {
+      background: url('banner.jpg') no-repeat center center / cover;
+      height: 60vh;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1, header p {
+      color: #28a745;
+    }
+
+    .cta-buttons a {
+      margin: 10px;
+      padding: 15px 25px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 40px;
+      text-align: center;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+
+    .features, .how-it-works {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .feature, .how-it-works-item {
+      flex: 1;
+      margin: 10px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial, .cta {
+      background-color: #28a745;
+      color: white;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .cta a {
+      background-color: white;
+      color: #28a745;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+    }
+
+    video {
+      width: 600px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    /* Back to Top Button */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    // JavaScript for Language Switching and Navbar Hiding
+    function changeLanguage(lang) {
+      localStorage.setItem('language', lang);
+      const elements = document.querySelectorAll('[data-lang]');
+      elements.forEach(el => {
+        el.textContent = el.getAttribute(`data-lang-${lang}`);
+      });
+    }
+
+    function loadLanguage() {
+      const lang = localStorage.getItem('language') || 'en';
+      changeLanguage(lang);
+      document.getElementById('language').value = lang;
+    }
+
+    window.onload = loadLanguage;
+
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('nav');
+    window.addEventListener('scroll', function () {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop) {
+        navbar.classList.add('hidden');
+      } else {
+        navbar.classList.remove('hidden');
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+
+      // Show back to top button
+      const button = document.getElementById("backToTop");
+      if (currentScroll > 100) {
+        button.style.display = "block";
+      } else {
+        button.style.display = "none";
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo" aria-label="HarvestHub Logo">HarvestHub</div>
+    <ul>
+      <li><a href="HarvestHub.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <div class="language-select">
+      <label for="language">Choose Language: </label>
+      <select id="language" onchange="changeLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="te">Telugu</option>
+      </select>
+    </div>
+    <div class="login-button">
+      <a href="login.html">Login</a>
+    </div>
+  </nav>
+
+  <!-- Back to Top Button -->
+  <button onclick="window.scrollTo(0, 0)" id="backToTop">Back to Top</button>
+
+  <!-- Header Section -->
+  <header>
+    <div>
+      <h1 data-lang data-lang-en="Welcome to HarvestHub" data-lang-te="హార్వెస్ట్హబ్‌కు స్వాగతం">Welcome to HarvestHub</h1>
+      <p data-lang data-lang-en="Connecting Farmers to Markets, Directly from Home" data-lang-te="రైతులను గృహం నుండి నేరుగా మార్కెట్లకు అనుసంధానం చేయడం">Connecting Farmers to Markets, Directly from Home</p>
+      <div class="cta-buttons">
+        <a href="Registration.html" data-lang data-lang-en="Register Now" data-lang-te="ఇప్పుడు నమోదు చేసుకోండి">Register Now</a>
+        <a href="#learn-more" data-lang data-lang-en="Learn More" data-lang-te="ఇంకా తెలుసుకోండి">Learn More</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <h2 data-lang data-lang-en="Key Features" data-lang-te="ప్రధాన లక్షణాలు">Key Features</h2>
+    <div class="features">
+      <div class="feature">
+        <h3 data-lang data-lang-en="Sell from Home" data-lang-te="ఇంటి నుండి అమ్మండి">Sell from Home</h3>
+        <p data-lang data-lang-en="Farmers can upload videos and provide crop details directly from their fields." data-lang-te="రైతులు వీడియోలను అప్లోడ్ చేసి పొలాల నుండి వివరాలను అందించవచ్చు.">Farmers can upload videos and provide crop details directly from their fields.</p>
+      </div>
+      <div class="feature">
+        <h3 data-lang data-lang-en="Verified Buyers" data-lang-te="ధృవీకరించిన కొనుగోలుదారులు">Verified Buyers</h3>
+        <p data-lang data-lang-en="Farmers and dealers connect without the hassle of market visits." data-lang-te="రైతులు మరియు డీలర్లు మార్కెట్ సందర్శన అవసరం లేకుండా కనెక్ట్ అవుతారు.">Farmers and dealers connect without the hassle of market visits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section" id="how-it-works">
+    <h2 data-lang data-lang-en="How It Works" data-lang-te="ఇద ఎలా పనిచేస్తుంది">How It Works</h2>
+    <div class="how-it-works">
+      <div class="how-it-works-item">
+        <h3 data-lang data-lang-en="For Farmers" data-lang-te="రైతుల కోసం">For Farmers</h3>
+        <p data-lang data-lang-en="1. Register and log in." data-lang-te="1. నమోదు చేసుకుని లాగిన్ అవండి.">1. Register and log in.</p>
+        <p data-lang data-lang-en="2. Upload your crop’s details, including videos and weight." data-lang-te="2. మీ పంట వివరాలు, వీడియోలు మరియు బరువు అప్లోడ్ చేయండి.">2. Upload your crop’s details, including videos and weight.</p>
+        <p data-lang data-lang-en="3. Set your price and list your produce." data-lang-te="3. మీ ధరను సెట్ చేసి, మీ ఉత్పత్తిని జాబితా చేయండి.">3. Set your price and list your produce.</p>
+        <p data-lang data-lang-en="4. We help arrange delivery after a buyer purchases." data-lang-te="4. కొనుగోలుదారు కొనుగోలు చేసిన తరువాత డెలివరీని ఏర్పాటు చేయడంలో సహాయపడతాము.">4. We help arrange delivery after a buyer purchases.</p>
+      </div>
+      <div class="how-it-works-item">
+        <h3 data-lang data-lang-en="For Buyers" data-lang-te="కొనుగోలుదారుల కోసం">For Buyers</h3>
+        <p data-lang data-lang-en="1. Browse available crops and select the ones you want." data-lang-te="1. అందుబాటులో ఉన్న పంటలను బ్రౌజ్ చేయండి మరియు మీరు కావాల్సిన వాటిని ఎంచుకోండి.">1. Browse available crops and select the ones you want.</p>
+        <p data-lang data-lang-en="2. Add to cart and choose your payment option." data-lang-te="2. కార్ట్‌లో జోడించి మీ చెల్లింపు ఎంపికను ఎంచుకోండి.">2. Add to cart and choose your payment option.</p>
+        <p data-lang data-lang-en="3. Get your crops delivered to your doorstep." data-lang-te="3. మీ పంటలను మీ ఇంటి మెట్టకు డెలివరీ చేయించుకోండి.">3. Get your crops delivered to your doorstep.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why HarvestHub Section -->
+  <section class="section">
+    <h2 data-lang data-lang-en="Why HarvestHub?" data-lang-te="ఎందుకు హార్వెస్ట్హబ్?">Why HarvestHub?</h2>
+    <p data-lang data-lang-en="Transparent, easy-to-use platform for both farmers and buyers. Avoid the hassle of visiting markets and get fair prices for your crops. Trusted by thousands of farmers and dealers across the region." data-lang-te="రైతులకు మరియు కొనుగోలుదారులకు సులభంగా ఉపయోగించగల ప్లాట్‌ఫారమ్. మార్కెట్లను సందర్శించే కష్టాలను నివారించండి మరియు మీ పంటలకు న్యాయమైన ధరలను పొందండి.">Transparent, easy-to-use platform for both farmers and buyers. Avoid the hassle of visiting markets and get fair prices for your crops.</p>
+    <video controls>
+      <source src="promo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonial section">
+    <h2 data-lang data-lang-en="What Our Users Say" data-lang-te="మా వినియోగదారులు ఏమంటారు">What Our Users Say</h2>
+    <p data-lang data-lang-en="“HarvestHub has made it so much easier for me to sell my crops. No need to travel to markets anymore!” – [Farmer Name]" data-lang-te="“హార్వెస్ట్హబ్ నా పంటలను అమ్మడం చాలా సులభం చేసింది. ఇక మార్కెట్లకు ప్రయాణించాల్సిన అవసరం లేదు!” – [రైతు పేరు]">“HarvestHub has made it so much easier for me to sell my crops. No need to travel to markets anymore!” – [Farmer Name]</p>
+    <p data-lang data-lang-en="“I love how simple it is to buy fresh produce online. The delivery service is excellent!” – [Buyer Name]" data-lang-te="“ఆన్‌లైన్‌లో తాజా ఉత్పత్తులను కొనడం ఎంత సులభం అనేది నాకు చాలా నచ్చింది. డెలివరీ సేవ అద్భుతం!” – [కొనుగోలుదారు పేరు]">“I love how simple it is to buy fresh produce online. The delivery service is excellent!” – [Buyer Name]</p>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta section">
+    <h2 data-lang data-lang-en="Ready to start selling or buying?" data-lang-te="అమ్మడం లేదా కొనడం ప్రారంభించడానికి సిద్ధంగా ఉన్నారా?">Ready to start selling or buying?</h2>
+    <a href="login.html" data-lang data-lang-en="Login Here" data-lang-te="ఇక్కడ లాగిన్ అవండి">Login Here</a>
+  </section>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Settings & Preferences</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #4CAF50;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+}
+
+.nav-link:hover {
+    background-color: #45a049;
+    border-radius: 5px;
+}
+
+.nav-link.active {
+    background-color: #388e3c;
+    border-radius: 5px;
+}
+
+/* Settings Container */
+.settings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* Settings Card */
+.settings-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.settings-card h3 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.settings-card button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.settings-card button:hover {
+    background-color: #45a049;
+}
+
+.delete-account {
+    border: 2px solid #f44336;
+}
+
+.delete-account button {
+    background-color: #f44336;
+}
+
+.delete-account button:hover {
+    background-color: #e53935;
+}
+
+label {
+    display: block;
+    margin: 8px 0;
+}
+
+select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+</style>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="buyer-dashboard.html" class="nav-link">Home</a>
+        <a href="buyer-profile.html" class="nav-link">Profile</a>
+        <a href="buyer-settings.html" class="nav-link active">Settings</a>
+        <a href="login.html" class="nav-link">Logout</a>
+    </nav>
+
+    <h2>Settings & Preferences</h2>
+    <div class="settings-container">
+        <!-- Account Information -->
+        <div class="settings-card">
+            <h3>Account Information</h3>
+            <p><strong>Name:</strong> Buyer Name</p>
+            <p><strong>Email:</strong> buyer@example.com</p>
+            <button>Edit Details</button>
+        </div>
+
+        <!-- Privacy Settings -->
+        <div class="settings-card">
+            <h3>Privacy Settings</h3>
+            <p>Manage how your data is shared and used.</p>
+            <label><input type="checkbox" checked> Allow Data Sharing</label><br>
+            <label><input type="checkbox"> Hide Profile from Public</label>
+            <button>Update Preferences</button>
+        </div>
+
+        <!-- Theme Preferences -->
+        <div class="settings-card">
+            <h3>Theme Preferences</h3>
+            <p>Choose a theme for your dashboard:</p>
+            <label><input type="radio" name="theme" checked> Light</label>
+            <label><input type="radio" name="theme"> Dark</label>
+        </div>
+
+        <!-- Notification Preferences -->
+        <div class="settings-card">
+            <h3>Notification Preferences</h3>
+            <p>Stay informed with alerts and updates.</p>
+            <label><input type="checkbox" checked> Email Notifications</label><br>
+            <label><input type="checkbox" checked> SMS Alerts</label><br>
+            <label><input type="checkbox"> Push Notifications</label>
+        </div>
+
+        <!-- Security & Password -->
+        <div class="settings-card">
+            <h3>Security & Password</h3>
+            <p>Ensure your account is secure with a strong password.</p>
+            <button>Change Password</button>
+        </div>
+
+        <!-- Manage Payment Methods -->
+        <div class="settings-card">
+            <h3>Manage Payment Methods</h3>
+            <p>Update or add your payment details for easier transactions.</p>
+            <button>Add Payment Method</button>
+        </div>
+
+        <!-- Language Preferences -->
+        <div class="settings-card">
+            <h3>Language Preferences</h3>
+            <p>Select your preferred language:</p>
+            <select>
+                <option>English</option>
+                <option>Telugu</option>
+                <option>Hindi</option>
+            </select>
+        </div>
+
+        <!-- Delete Account -->
+        <div class="settings-card delete-account">
+            <h3>Delete Account</h3>
+            <p>Warning: Deleting your account will erase all your data.</p>
+            <button class="delete-btn">Delete Account</button>
+        </div>
+    </div>
+</body>
+</html>

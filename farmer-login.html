@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Login - HarvestHub</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            width: 100%;
+            background-color: #28a745;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Centering Login Form */
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: green;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #28a745;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Ensure the login form is vertically centered */
+        html, body {
+            height: 100%;
+        }
+
+        /* Add space between the navbar and the form */
+        nav + .login-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="HarvestHub.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+    </nav>
+
+    <!-- Login Form Container -->
+    <div class="login-container">
+        <h2 id="login-heading">Farmer Login</h2>
+        <form action="farmer-dashboard.html" method="POST">
+            <div class="form-group">
+                <label for="email" id="email-label">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password" id="password-label">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn" id="login-button">Login</button>
+        </form>
+        <div class="register-link">
+            <span id="no-account-text">Don't have an account?</span> 
+            <a href="Registration.html" id="register-link">Register here</a>
+        </div>
+    </div>
+
+    <script>
+        // Function to change text based on language
+        function setLanguage(language) {
+            if (language === 'telugu') {
+                document.getElementById('login-heading').innerText = 'రైతు లాగిన్';
+                document.getElementById('email-label').innerText = 'ఇమెయిల్ చిరునామా';
+                document.getElementById('password-label').innerText = 'పాస్‌వర్డ్';
+                document.getElementById('login-button').innerText = 'లాగిన్';
+                document.getElementById('no-account-text').innerText = 'ఖాతా లేవా?';
+                document.getElementById('register-link').innerText = 'ఇక్కడ నమోదు చేసుకోండి';
+            }
+        }
+
+        // Check language from local storage
+        const language = localStorage.getItem('language') || 'english';
+        setLanguage(language);
+    </script>
+
+</body>
+</html>

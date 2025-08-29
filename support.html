@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - HarvestHub</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS if needed -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        nav.hidden {
+            transform: translateY(-100%);
+        }
+        nav .logo {
+            font-size: 1.5rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        nav .language-select, nav .login-button {
+            margin: 0 10px;
+        }
+        nav .language-select select, nav .login-button a {
+            background-color: white;
+            color: #28a745;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        nav .language-select select {
+            font-size: 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #28a745;
+        }
+        .container p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+        .container ul {
+            list-style: none;
+            padding: 0;
+        }
+        .container ul li {
+            margin: 10px 0;
+        }
+        .container ul li strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        // JavaScript function to toggle language between English and Telugu
+        function changeLanguage(lang) {
+            localStorage.setItem('language', lang);
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(el => {
+                el.textContent = el.getAttribute(`data-lang-${lang}`);
+            });
+        }
+        function loadLanguage() {
+            const lang = localStorage.getItem('language') || 'en';
+            changeLanguage(lang);
+            document.getElementById('language').value = lang;
+        }
+        window.onload = loadLanguage;
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                // Scroll Down
+                navbar.classList.add('hidden');
+            } else {
+                // Scroll Up
+                navbar.classList.remove('hidden');
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">HarvestHub</div>
+        <ul>
+            <li><a href="HarvestHub.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+        <div class="language-select">
+            <label for="language">Choose Language: </label>
+            <select id="language" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="te">Telugu</option>
+            </select>
+        </div>
+        <div class="login-button">
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+    <!-- Support Content -->
+    <div class="container">
+        <h2 data-lang data-lang-en="Support - HarvestHub" data-lang-te="సహాయం - హార్వెస్ట్హబ">Support - HarvestHub</h2>
+        <p data-lang data-lang-en="At HarvestHub, we're here to assist you every step of the way. Whether you're a farmer or a buyer, we offer comprehensive support to ensure your experience is seamless and successful.
+        1. For Farmers:
+        - Easy Crop Listing: Upload videos and record crop weights with ease.
+        - Direct Sales: No need to visit markets; sell from the comfort of your home.
+        - Secure Payments: Choose from multiple payment methods, including UPI, online transfers, and COD.
+        - Delivery Assistance: We help arrange delivery to the buyer's specified address.
+        
+        2. For Buyers:
+        - Wide Variety: Access fresh crops from trusted farmers across different regions.
+        - Verified Listings: View videos and details of crops before making a purchase.
+        - Flexible Payment Options: Pay online or via COD at your convenience.
+        - Reliable Delivery: We ensure timely delivery of your purchased products." data-lang-te="హార్వెస్ట్హబ్‌లో, మేముమీకు ప్రత్త దరలో సహాయం అందంచడానిి ఇకె డ ఉన్యన ము. మీరు రైతా లేదా కొనుగోలుదారుగా ఉన్యన, మీ అనుభవం సజావుగా మ్రియువిజయవంతంగా ఉండందుకు మేముసమ్ప్గ మ్దతుి అందస్వుము.
+        1. రైతుల కసం:
+        - సులభమైన రంట్ జాబితా: వీడియోలను అప్‌లోడ్ చేసి, రంట్ల బరువులను సులభంగా నమోదు చేయండి.
+        - నేరుగా అమ్మ కాలు: మార్వెటులసందరిశ ంచే అవసర్ం లేదు; మీ ఇంటి సౌలభా ంలో అమ్మ ండి.
+        - భప్దతా చెల్ంల ప్పలు: UPI, ఆన్‌లైన ప్టాని ్‌ఫరుల, మ్రియుCOD వంటి అనేక చెల్ంల ప్ప విధాన్యల నుండి ఎంచ్చకండి.
+        - డెల్వరీ సహాయం: కొనుగోలుదారుల నిరిషి ్చిరున్యమాకు డెల్వరీని ఏరాు టు చేయడంలో మేము సహాయం చేస్వుము.
+        
+        2. కొనుగోలుదారులకు:
+        - విసృుత ప్ేణ: వివిధ ప్రంతాలలో నమ్మ దగిన రైతుల నుండి తాజా రంట్లను పొందండి.
+        - ధృవీకరించబడిన జాబితాలు: కొనుగోలు చేసేముందు రంట్ల వీడియోలను మ్రియువివరాలను చూడండి.
+        - లవకై చెల్ఛేల్ ప్ప ఎంపికలు: మీ సౌలభా ం ప్రకార్ం ఆన్‌లైన్‌లో లేదా COD దాె రా చెల్ఛేల్ చండి.
+        - నమ్మ దగిన డెల్వరీ: కొనుగోలుచేసిన ఉతుతుుల సమ్యానిి డెల్వరీని మేము నిరాధరించ్చకుంటాము.">At HarvestHub, we're here to assist you every step of the way. Whether you're a farmer or a buyer, we offer comprehensive support to ensure your experience is seamless and successful.
+        1. For Farmers:
+        - Easy Crop Listing: Upload videos and record crop weights with ease.
+        - Direct Sales: No need to visit markets; sell from the comfort of your home.
+        - Secure Payments: Choose from multiple payment methods, including UPI, online transfers, and COD.
+        - Delivery Assistance: We help arrange delivery to the buyer's specified address.
+        
+        2. For Buyers:
+        - Wide Variety: Access fresh crops from trusted farmers across different regions.
+        - Verified Listings: View videos and details of crops before making a purchase.
+        - Flexible Payment Options: Pay online or via COD at your convenience.
+        - Reliable Delivery: We ensure timely delivery of your purchased products.
+        </p>
+    </div>
+</body>
+</html>
